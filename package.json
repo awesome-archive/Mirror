@@ -1,61 +1,30 @@
 {
-  "name": "Mirror",
-  "version": "0.4.1",
-  "description": "A blog tool powered by github issues",
-  "bin": {
-    "mirror": "./mirror.js"
-  },
+  "name": "mirror",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A blog tool powered by GitHub issues",
   "scripts": {
-    "dev": "cross-env NODE_ENV=html webpack --progress && webpack-dev-server --inline --hot --no-info --host 0.0.0.0",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --progress && cp favicon.png dist && node zip.js && npm run release",
-    "release": "npm run clean && cross-env NODE_ENV=npm webpack --progress && cp favicon.png dist",
-    "clean": "rm -f -R dist build.js index.html"
+    "start": "falco -c -m src/index.js",
+    "prebuild": "rm -rf docs",
+    "build": "NODE_ENV=docs falco -c -o docs -m src/index.js",
+    "postbuild": "node ./build.js",
+    "lint": "eslint ."
   },
-  "files": [
-    "dist",
-    "mirror.js"
-  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/LoeiFy/Mirror.git"
   },
-  "keywords": [
-    "blog",
-    "issues",
-    "github",
-    "personal"
-  ],
-  "author": "LoeiFy@gmail.com",
+  "author": "LoeiFy <LoeiFy@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/LoeiFy/Mirror/issues"
   },
   "homepage": "https://github.com/LoeiFy/Mirror",
   "devDependencies": {
-    "archiver": "^1.3.0",
-    "autoprefixer": "^6.5.1",
-    "axios": "^0.15.2",
-    "babel-core": "^6.18.0",
-    "babel-loader": "^6.2.7",
-    "babel-preset-es2015": "^6.18.0",
-    "core-js": "^2.4.1",
-    "cross-env": "^3.1.4",
-    "css-loader": "^0.25.0",
-    "es6-promise": "^4.0.5",
-    "github-markdown-css": "^2.4.1",
-    "html-webpack-plugin": "^2.24.1",
-    "node-sass": "^3.10.1",
-    "postcss-loader": "^1.1.0",
-    "sass-loader": "^4.0.2",
-    "smoothscroll-polyfill": "^0.3.4",
-    "style-loader": "^0.13.1",
-    "svg-inline-loader": "^0.7.1",
-    "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
-  },
-  "dependencies": {
-    "commander": "^2.9.0",
-    "fs-extra": "^1.0.0",
-    "yamljs": "^0.2.8"
+    "archiver": "^3.0.0",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "fs-extra": "^7.0.1"
   }
 }
